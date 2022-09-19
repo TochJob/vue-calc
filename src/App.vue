@@ -1,72 +1,59 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <input type="number" v-model.number="num1">
-    <input type="number" v-model.number="num2">
-    <button @click="mth('+')">+</button>
-    <button @click="mth('-')">-</button>
-    <button @click="mth('*')">*</button>
-    <button @click="mth('/')">/</button>
-    <button @click="mth('^')">^</button>
-    <button @click="mth('%')">%</button>
-    {{ res }}
+    <header>
+        <h1 class="header">My personal costs</h1>
+    </header>
+    <AddPaymentForm @add-payment="addPayment" />
+    <main>
+      <PaymentDisplay :paymentsList="paymentsList"/>
+    </main>
   </div>
 </template>
 
 <script>
+import AddPaymentForm from './components/AddPaymentForm.vue';
+import PaymentDisplay from './components/PaymentDisplay.vue';
 
 export default {
   name: 'App',
   components: {
-  },
+    PaymentDisplay,
+    AddPaymentForm,
+},
   data() {
     return {
-      num1:0,
-      num2:0,
-      res:0
+      paymentsList:[],
     }
   },
   methods: {
-    sum () {
-      this.res=this.num1+this.num2
+    fetchPaymentsData(){
+      return [
+      {
+          date: '28.03.2020',
+          category: 'Food',
+          value:163
+        },
+        {
+          date: '25.03.2020',
+          category: 'Transport',
+          value:263
+        },
+        {
+          date: '28.03.2022',
+          category: 'Food',
+          value:363
+        }
+      ]
     },
-    minus () {
-      this.res=this.num1-this.num2
+    addPayment(data){
+      this.paymentsList.push(data)
     },
-    div () {
-      this.res=this.num1/this.num2
-    },
-    mult () {
-      this.res=this.num1*this.num2
-    },
-    exponentiation () {
-      this.res=Math.pow(this.num1, this.num2)
-    },
-    integer () {
-      this.res=Math.trunc(this.num1 / this.num2)
-    },
-    mth (key) {
-      switch (key) {
-        case '+':
-          this.sum()
-          break;
-        case '-':
-          this.minus()
-          break;
-        case '*':
-          this.mult()
-          break;
-        case '/':
-          this.div()
-          break;
-        case '%':
-          this.integer()
-          break;
-        case '^':
-          this.exponentiation()
-          break;
-      }
-    }
+  },
+  created() {
+    setTimeout(()=>{
+      this.paymentsList = this.fetchPaymentsData()
+
+    }, 2000)
   },
 }
 </script>
