@@ -22,38 +22,38 @@ export default {
 },
   data() {
     return {
-      paymentsList:[],
+      // paymentsList:[],
     }
   },
   methods: {
-    fetchPaymentsData(){
-      return [
-      {
-          date: '28.03.2020',
-          category: 'Food',
-          value:163
-        },
-        {
-          date: '25.03.2020',
-          category: 'Transport',
-          value:263
-        },
-        {
-          date: '28.03.2022',
-          category: 'Food',
-          value:363
-        }
-      ]
-    },
+    // fetchPaymentsData(){
+    //   return [
+    //   {
+    //       date: '28.03.2020',
+    //       category: 'Food',
+    //       value:163
+    //     },
+    //     {
+    //       date: '25.03.2020',
+    //       category: 'Transport',
+    //       value:263
+    //     },
+    //     {
+    //       date: '28.03.2022',
+    //       category: 'Food',
+    //       value:363
+    //     }
+    //   ]
+    // },
     addPayment(data){
       this.paymentsList.push(data)
     },
   },
   created() {
-    setTimeout(()=>{
-      this.paymentsList = this.fetchPaymentsData()
+    // setTimeout(()=>{
+    //   this.paymentsList = this.fetchPaymentsData()
 
-    }, 2000)
+    // }, 2000)
   },
 }
 </script>
